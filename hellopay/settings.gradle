@@ -1,1 +1,3 @@
 rootProject.name = 'hellopay'
+include 'member-service'
+
