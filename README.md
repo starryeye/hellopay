@@ -1,5 +1,5 @@
 # hellopay
-모의 페이
+모의 페이 서비스
 
 ## dependency
 - Java 17
