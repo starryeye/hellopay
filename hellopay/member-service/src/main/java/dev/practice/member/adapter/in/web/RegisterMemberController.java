@@ -25,11 +25,11 @@ public class RegisterMemberController {
     @PostMapping("/new")
     public ResponseEntity<RegisterMemberResponse> register(@Valid @RequestBody RegisterMemberRequest request) {
 
-        RegisterMemberSource source = RegisterMemberSource.builder()
-                .name(request.getName())
-                .email(request.getEmail())
-                .address(request.getAddress())
-                .build();
+        RegisterMemberSource source = RegisterMemberSource.create(
+                request.getName(),
+                request.getEmail(),
+                request.getAddress()
+        );
 
         Member executed = useCase.execute(source);
 
