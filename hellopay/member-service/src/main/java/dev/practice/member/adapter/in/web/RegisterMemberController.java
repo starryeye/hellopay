@@ -2,7 +2,13 @@ package dev.practice.member.adapter.in.web;
 
 import dev.practice.common.WebAdapter;
 import dev.practice.member.adapter.in.web.request.RegisterMemberRequest;
+import dev.practice.member.adapter.in.web.response.RegisterMemberResponse;
+import dev.practice.member.application.port.in.RegisterMemberUseCase;
+import dev.practice.member.application.port.in.source.RegisterMemberSource;
+import dev.practice.member.domain.Member;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +20,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/members/")
 public class RegisterMemberController {
 
+    private final RegisterMemberUseCase useCase;
+
     @PostMapping("/new")
-    public void register(@RequestBody RegisterMemberRequest request) {
+    public ResponseEntity<RegisterMemberResponse> register(@Valid @RequestBody RegisterMemberRequest request) {
 
+        RegisterMemberSource source = RegisterMemberSource.builder()
+                .name(request.getName())
+                .email(request.getEmail())
+                .address(request.getAddress())
+                .build();
 
+        Member executed = useCase.execute(source);
+
+        return ResponseEntity.ok(RegisterMemberResponse.of(executed));
     }
 }
