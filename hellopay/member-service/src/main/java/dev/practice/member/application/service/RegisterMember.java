@@ -6,6 +6,7 @@ import dev.practice.member.application.port.in.source.RegisterMemberSource;
 import dev.practice.member.application.port.out.RegisterMemberPort;
 import dev.practice.member.domain.Member;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 @UseCase
 @RequiredArgsConstructor
@@ -13,6 +14,7 @@ public class RegisterMember implements RegisterMemberUseCase {
 
     private final RegisterMemberPort registerMemberPort;
 
+    @Transactional
     @Override
     public Member execute(RegisterMemberSource source) {
 
