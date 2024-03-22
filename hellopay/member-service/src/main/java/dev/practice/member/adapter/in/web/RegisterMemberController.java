@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @WebAdapter
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/members/")
+@RequestMapping("/api/v1/members")
 public class RegisterMemberController {
 
     private final RegisterMemberUseCase useCase;
