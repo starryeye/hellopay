@@ -3,7 +3,7 @@
 
 # project
 - hellopay
-  - user-service
+  - member-service
 
 ## dependency
 - Java 17
