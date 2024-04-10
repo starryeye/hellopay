@@ -1,8 +1,10 @@
 package dev.practice.member.application.port.in.source;
 
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+@EqualsAndHashCode
 @Getter
 public class RegisterMemberSource {
 
