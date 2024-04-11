@@ -17,6 +17,8 @@ public class FindMember implements FindMemberUseCase {
     @Override
     public Member execute(String id) {
 
-        return findMemberPort.get(id);
+        return findMemberPort.get(
+                new Member.MemberId(id)
+        );
     }
 }

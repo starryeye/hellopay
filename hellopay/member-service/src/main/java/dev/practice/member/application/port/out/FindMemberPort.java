@@ -4,5 +4,5 @@ import dev.practice.member.domain.Member;
 
 public interface FindMemberPort {
 
-    Member get(String id);
+    Member get(Member.MemberId memberId);
 }

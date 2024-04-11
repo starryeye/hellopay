@@ -1,7 +1,7 @@
 package dev.practice.member.adapter.in.web;
 
 import dev.practice.common.WebAdapter;
-import dev.practice.member.adapter.in.web.response.FindMemberResponse;
+import dev.practice.member.adapter.in.web.response.MemberResponse;
 import dev.practice.member.application.port.in.FindMemberUseCase;
 import dev.practice.member.domain.Member;
 import lombok.RequiredArgsConstructor;
@@ -20,10 +20,10 @@ public class FindMemberController {
     private final FindMemberUseCase useCase;
 
     @GetMapping("/{memberId}")
-    public ResponseEntity<FindMemberResponse> get(@PathVariable("memberId") String memberId) {
+    public ResponseEntity<MemberResponse> get(@PathVariable("memberId") String memberId) {
 
         Member executed = useCase.execute(memberId);
 
-        return ResponseEntity.ok(FindMemberResponse.of(executed));
+        return ResponseEntity.ok(MemberResponse.of(executed));
     }
 }

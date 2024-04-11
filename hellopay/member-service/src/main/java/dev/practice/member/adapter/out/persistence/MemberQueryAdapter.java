@@ -12,9 +12,10 @@ public class MemberQueryAdapter implements FindMemberPort {
     private final MemberJpaRepository memberJpaRepository;
 
     @Override
-    public Member get(String id) {
+    public Member get(Member.MemberId memberId) {
 
-        MemberJpaEntity entity = memberJpaRepository.findById(Long.parseLong(id)).orElseThrow();
+        MemberJpaEntity entity = memberJpaRepository.findById(Long.parseLong(memberId.getMemberIdValue()))
+                .orElseThrow();
 
         return entity.toDomain();
     }

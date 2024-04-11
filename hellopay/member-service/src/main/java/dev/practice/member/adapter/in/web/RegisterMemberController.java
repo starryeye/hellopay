@@ -2,7 +2,7 @@ package dev.practice.member.adapter.in.web;
 
 import dev.practice.common.WebAdapter;
 import dev.practice.member.adapter.in.web.request.RegisterMemberRequest;
-import dev.practice.member.adapter.in.web.response.RegisterMemberResponse;
+import dev.practice.member.adapter.in.web.response.MemberResponse;
 import dev.practice.member.application.port.in.RegisterMemberUseCase;
 import dev.practice.member.application.port.in.source.RegisterMemberSource;
 import dev.practice.member.domain.Member;
@@ -23,7 +23,7 @@ public class RegisterMemberController {
     private final RegisterMemberUseCase useCase;
 
     @PostMapping("/new")
-    public ResponseEntity<RegisterMemberResponse> register(@Valid @RequestBody RegisterMemberRequest request) {
+    public ResponseEntity<MemberResponse> register(@Valid @RequestBody RegisterMemberRequest request) {
 
         RegisterMemberSource source = RegisterMemberSource.create(
                 request.getName(),
@@ -33,6 +33,6 @@ public class RegisterMemberController {
 
         Member executed = useCase.execute(source);
 
-        return ResponseEntity.ok(RegisterMemberResponse.of(executed));
+        return ResponseEntity.ok(MemberResponse.of(executed));
     }
 }

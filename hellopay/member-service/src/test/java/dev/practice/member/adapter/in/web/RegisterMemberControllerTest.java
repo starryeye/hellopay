@@ -1,9 +1,8 @@
 package dev.practice.member.adapter.in.web;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.practice.member.adapter.in.web.request.RegisterMemberRequest;
-import dev.practice.member.adapter.in.web.response.RegisterMemberResponse;
+import dev.practice.member.adapter.in.web.response.MemberResponse;
 import dev.practice.member.application.port.in.RegisterMemberUseCase;
 import dev.practice.member.application.port.in.source.RegisterMemberSource;
 import dev.practice.member.domain.Member;
@@ -44,7 +43,7 @@ class RegisterMemberControllerTest {
                 .email("email@practice.dev")
                 .address("address")
                 .build();
-        RegisterMemberResponse expectedResponse = RegisterMemberResponse.builder()
+        MemberResponse expectedResponse = MemberResponse.builder()
                 .memberId("1")
                 .memberName("name")
                 .memberEmail("email@practice.dev")
