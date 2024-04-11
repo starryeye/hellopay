@@ -1,3 +1,6 @@
+plugins {
+    id 'com.palantir.docker' version '0.36.0'
+}
 
 group = 'dev.practice.member'
 version = '0.0.1-SNAPSHOT'
@@ -14,4 +17,20 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+// gradle 로 빌드를 하면서 docker 이미지도 만들 수 있는 gradle docker plugin
+// 아래를 실행하면 local docker desktop 의 images 에서 확인 가능하다.
+docker {
+    println(tasks.bootJar.outputs.files)
+
+    // image 이름 지정
+    name rootProject.name+'-'+project.name + ":" + version
+
+    // 어떤 Dockerfile 로 이미지를 생성할 건지
+    dockerfile file('../Dockerfile')
+
+    // Dockerfile 에 전달할 argument(gradle bootJar 빌드 결과물)
+    files tasks.bootJar.outputs.files
+    buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name])
 }
