@@ -9,8 +9,6 @@ bootJar {
 }
 
 allprojects {
-	group = 'dev.practice'
-	version = '0.0.1-SNAPSHOT'
 
 	repositories {
 		mavenCentral()
@@ -25,14 +23,8 @@ subprojects {
 
 	dependencies {
 
-		implementation 'org.springframework.boot:spring-boot-starter-web'
-		implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-		implementation 'org.springframework.boot:spring-boot-starter-validation'
-
 		compileOnly 'org.projectlombok:lombok'
 		annotationProcessor 'org.projectlombok:lombok'
-
-		runtimeOnly 'com.h2database:h2'
 
 		testImplementation 'org.springframework.boot:spring-boot-starter-test'
 		testCompileOnly 'org.projectlombok:lombok'
@@ -42,8 +34,4 @@ subprojects {
 	tasks.named('test') {
 		useJUnitPlatform()
 	}
-}
-
-project(':member-service') {
-
 }
