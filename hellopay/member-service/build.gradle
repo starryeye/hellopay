@@ -21,6 +21,7 @@ test {
 
 // gradle 로 빌드를 하면서 docker 이미지도 만들 수 있는 gradle docker plugin
 // 아래를 실행하면 local docker desktop 의 images 에서 확인 가능하다.
+// ./gradlew docker 명령어를 project root 경로(hellopay)에서 수행하면, 하위 모든 멀티 모듈에 존재하는 docker 명령어가 수행됨
 docker {
     println(tasks.bootJar.outputs.files)
 
