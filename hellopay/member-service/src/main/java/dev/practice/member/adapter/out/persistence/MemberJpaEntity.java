@@ -52,4 +52,8 @@ public class MemberJpaEntity {
                 new Member.MemberIsCorp(isCorp)
         );
     }
+
+    public void changeName(String name) {
+        this.name = name;
+    }
 }
