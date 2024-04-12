@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS hello_pay;
+USE hello_pay;

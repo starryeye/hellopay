@@ -1,4 +1,13 @@
 spring:
+  profiles:
+    default: local-h2
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local-h2
+
   h2:
     console:
       enabled: true
@@ -12,6 +21,30 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        highlight_sql: true
+        format_sql: true
+        use_sql_comments: true
+    open-in-view: false
+
+---
+spring:
+  config:
+    activate:
+      on-profile: stage-mysql
+
+  datasource:
+    # ide: localhost:3306, docker: hellopay-mysql:3306 or host.docker.internal:3306
+    url: jdbc:mysql://hellopay-mysql:3306/hello_pay?useSSL=false&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: user
+    password: 2222
+
+  jpa:
+    hibernate:
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:

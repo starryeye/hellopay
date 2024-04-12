@@ -1,0 +1,42 @@
+# docker-compose -p hellopay up -d
+
+version: '3.7'
+services:
+
+  hellopay-mysql:
+    image: mysql:8.0
+    networks:
+      - hellopay-network
+    volumes:
+      - ./db/conf.d:/etc/mysql/conf.d
+      - ./db/data:/var/lib/mysql
+      - ./db/initdb.d:/docker-entrypoint-initdb.d
+    env_file: ./db/.env
+    ports:
+      - "3306:3306"
+    environment:
+      - TZ=Asia/Seoul
+      - MYSQL_ROOT_PASSWORD=1111
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=2222
+
+  member-service:
+    image: hellopay-member-service:0.0.1
+    networks:
+      - hellopay-network
+    ports:
+      - "8081:8080"
+    depends_on:
+      - hellopay-mysql
+    # 아래와 같이 application.yml 에 적용될 environment variable 을 여기서 선언할 수 도 있다.
+    environment:
+      - SPRING_PROFILES_ACTIVE=stage-mysql
+#      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/hello_pay?useSSL=false&allowPublicKeyRetrieval=true
+#      - SPRING_DATASOURCE_USERNAME=user
+#      - SPRING_DATASOURCE_PASSWORD=2222
+#      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL5InnoDBDialect
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+networks:
+  hellopay-network:
+    driver: bridge
