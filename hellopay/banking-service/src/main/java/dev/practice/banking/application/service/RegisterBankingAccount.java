@@ -1,5 +1,6 @@
 package dev.practice.banking.application.service;
 
+import dev.practice.banking.application.port.out.CheckBankAccountValidationPort;
 import dev.practice.banking.application.port.out.CheckMemberValidationPort;
 import dev.practice.banking.application.port.out.RegisterBankAccountPort;
 import dev.practice.banking.application.port.in.RegisterBankAccountUseCase;
@@ -13,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 public class RegisterBankingAccount implements RegisterBankAccountUseCase {
 
     private final CheckMemberValidationPort checkMemberValidationPort;
+    private final CheckBankAccountValidationPort checkBankAccountValidationPort;
     private final RegisterBankAccountPort registerBankAccountPort;
 
     @Override
@@ -32,19 +34,27 @@ public class RegisterBankingAccount implements RegisterBankAccountUseCase {
          * 2-1. 등록이 불가능한 계좌면, 에러 리턴
          *
          */
-        Boolean memberIsValid = checkMemberValidationPort.isValid(
-                new RegisteredBankAccount.MemberId(source.getMemberId())
-        );
 
-        if(memberIsValid) {
-            
-        }else {
+        RegisteredBankAccount.MemberId memberId = new RegisteredBankAccount.MemberId(source.getMemberId());
+        RegisteredBankAccount.BankName bankName = new RegisteredBankAccount.BankName(source.getBankName());
+        RegisteredBankAccount.BankAccountNumber bankAccountNumber = new RegisteredBankAccount.BankAccountNumber(source.getBankAccountNumber());
+
+
+        Boolean memberIsValid = checkMemberValidationPort.isValid(memberId);
+
+        if (memberIsValid == Boolean.TRUE) {
+            Boolean bankAccountIsValid = checkBankAccountValidationPort.isValid();
+            RegisteredBankAccount.LinkedStatusIsValid linkedStatusIsValid = new RegisteredBankAccount.LinkedStatusIsValid(bankAccountIsValid);
+
+            return registerBankAccountPort.register(
+                    memberId,
+                    bankName,
+                    bankAccountNumber,
+                    linkedStatusIsValid
+            );
+        } else {
             // todo, invalid memberId
             return null;
         }
-
-
-
-        return null;
     }
 }

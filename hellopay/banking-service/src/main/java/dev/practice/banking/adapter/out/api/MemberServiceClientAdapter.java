@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 @WebClientAdapter
 @RequiredArgsConstructor
-public class CheckMemberValidationAdapter implements CheckMemberValidationPort {
+public class MemberServiceClientAdapter implements CheckMemberValidationPort {
     @Override
     public Boolean isValid(RegisteredBankAccount.MemberId memberId) {
 
