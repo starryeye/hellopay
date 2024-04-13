@@ -4,6 +4,7 @@ import dev.practice.banking.application.port.out.RegisterBankAccountPort;
 import dev.practice.banking.domain.RegisteredBankAccount;
 import dev.practice.common.PersistenceAdapter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 @PersistenceAdapter
 @RequiredArgsConstructor
@@ -11,6 +12,7 @@ public class RegisteredBankAccountCommandAdapter implements RegisterBankAccountP
 
     private final RegisteredBankAccountJpaRepository registeredBankAccountJpaRepository;
 
+    @Transactional
     @Override
     public RegisteredBankAccount register(
             RegisteredBankAccount.MemberId memberId,

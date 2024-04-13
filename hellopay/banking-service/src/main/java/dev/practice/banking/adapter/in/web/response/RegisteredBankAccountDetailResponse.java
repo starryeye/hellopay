@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class RegisteredBankAccountResponse {
+public class RegisteredBankAccountDetailResponse {
 
     private final String registeredBankAccountId;
     private final String memberId;
@@ -14,7 +14,7 @@ public class RegisteredBankAccountResponse {
     private final Boolean linkedStatusIsValid;
 
     @Builder
-    private RegisteredBankAccountResponse(String registeredBankAccountId, String memberId, String bankName, Long bankAccountNumber, Boolean linkedStatusIsValid) {
+    private RegisteredBankAccountDetailResponse(String registeredBankAccountId, String memberId, String bankName, Long bankAccountNumber, Boolean linkedStatusIsValid) {
         this.registeredBankAccountId = registeredBankAccountId;
         this.memberId = memberId;
         this.bankName = bankName;
@@ -22,8 +22,8 @@ public class RegisteredBankAccountResponse {
         this.linkedStatusIsValid = linkedStatusIsValid;
     }
 
-    public static RegisteredBankAccountResponse of(RegisteredBankAccount domain) {
-        return RegisteredBankAccountResponse.builder()
+    public static RegisteredBankAccountDetailResponse of(RegisteredBankAccount domain) {
+        return RegisteredBankAccountDetailResponse.builder()
                 .registeredBankAccountId(domain.getRegisteredBankAccountId())
                 .memberId(domain.getMemberId())
                 .bankName(domain.getBankName())

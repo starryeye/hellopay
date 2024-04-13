@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @UseCase
 @RequiredArgsConstructor
-public class RegisterBankingAccount implements RegisterBankAccountUseCase {
+public class RegisterBankAccount implements RegisterBankAccountUseCase {
 
     private final CheckMemberValidationPort checkMemberValidationPort;
     private final CheckBankAccountValidationPort checkBankAccountValidationPort;

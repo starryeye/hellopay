@@ -1,7 +1,7 @@
 package dev.practice.banking.adapter.in.web;
 
 import dev.practice.banking.adapter.in.web.request.RegisterBankAccountRequest;
-import dev.practice.banking.adapter.in.web.response.RegisteredBankAccountResponse;
+import dev.practice.banking.adapter.in.web.response.RegisteredBankAccountDetailResponse;
 import dev.practice.banking.application.port.in.RegisterBankAccountUseCase;
 import dev.practice.banking.application.port.in.source.RegisterBankAccountSource;
 import dev.practice.banking.domain.RegisteredBankAccount;
@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 @WebAdapter
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/banking")
+@RequestMapping("/api/v1/banking/account")
 public class RegisterBankAccountController {
 
     private final RegisterBankAccountUseCase registerBankAccountUseCase;
 
     @PostMapping("/register")
-    public ResponseEntity<RegisteredBankAccountResponse> register(@Valid @RequestBody RegisterBankAccountRequest request) {
+    public ResponseEntity<RegisteredBankAccountDetailResponse> register(@Valid @RequestBody RegisterBankAccountRequest request) {
 
         RegisterBankAccountSource source = RegisterBankAccountSource.create(
                 request.getMemberId(),
@@ -33,6 +33,6 @@ public class RegisterBankAccountController {
 
         RegisteredBankAccount executed = registerBankAccountUseCase.execute(source);
 
-        return ResponseEntity.ok(RegisteredBankAccountResponse.of(executed));
+        return ResponseEntity.ok(RegisteredBankAccountDetailResponse.of(executed));
     }
 }
