@@ -1,8 +1,20 @@
 package dev.practice.banking.application.service;
 
-public class RegisterBankingAccount {
+import dev.practice.banking.application.port.out.RegisterBankAccountPort;
+import dev.practice.banking.application.port.in.RegisterBankAccountUseCase;
+import dev.practice.banking.application.port.in.source.RegisterBankAccountSource;
+import dev.practice.banking.domain.RegisteredBankAccount;
+import dev.practice.common.UseCase;
+import lombok.RequiredArgsConstructor;
 
-    public void execute() {
+@UseCase
+@RequiredArgsConstructor
+public class RegisterBankingAccount implements RegisterBankAccountUseCase {
+
+    private final RegisterBankAccountPort registerBankAccountPort;
+
+    @Override
+    public RegisteredBankAccount execute(RegisterBankAccountSource registerBankAccountSource) {
 
         /**
          * 자신의 외부 실물 은행 계좌를 hellopay 에 등록하는 비즈니스에 해당한다.
@@ -18,5 +30,7 @@ public class RegisterBankingAccount {
          * 2-1. 등록이 불가능한 계좌면, 에러 리턴
          *
          */
+
+        return null;
     }
 }
