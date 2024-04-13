@@ -44,19 +44,19 @@ public class RegisterBankingAccount implements RegisterBankAccountUseCase {
 
         Boolean memberIsValid = checkMemberValidationPort.isValid(memberId);
 
-        if (memberIsValid == Boolean.TRUE) {
-            Boolean bankAccountIsValid = checkBankAccountValidationPort.isValid();
-            RegisteredBankAccount.LinkedStatusIsValid linkedStatusIsValid = new RegisteredBankAccount.LinkedStatusIsValid(bankAccountIsValid);
-
-            return registerBankAccountPort.register(
-                    memberId,
-                    bankName,
-                    bankAccountNumber,
-                    linkedStatusIsValid
-            );
-        } else {
+        if (memberIsValid == Boolean.FALSE) {
             // todo, invalid memberId
             return null;
         }
+
+        Boolean bankAccountIsValid = checkBankAccountValidationPort.isValid();
+        RegisteredBankAccount.LinkedStatusIsValid linkedStatusIsValid = new RegisteredBankAccount.LinkedStatusIsValid(bankAccountIsValid);
+
+        return registerBankAccountPort.register(
+                memberId,
+                bankName,
+                bankAccountNumber,
+                linkedStatusIsValid
+        );
     }
 }
