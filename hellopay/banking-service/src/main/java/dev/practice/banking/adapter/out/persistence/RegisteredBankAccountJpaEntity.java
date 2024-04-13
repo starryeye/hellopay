@@ -1,5 +1,6 @@
 package dev.practice.banking.adapter.out.persistence;
 
+import dev.practice.banking.domain.RegisteredBankAccount;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -38,5 +39,15 @@ public class RegisteredBankAccountJpaEntity {
                 .bankAccountNumber(bankAccountNumber)
                 .linkedStatusIsValid(linkedStatusIsValid)
                 .build();
+    }
+
+    public RegisteredBankAccount toDomain() {
+        return RegisteredBankAccount.create(
+                new RegisteredBankAccount.RegisteredBankAccountId(String.valueOf(id)),
+                new RegisteredBankAccount.MemberId(String.valueOf(memberId)),
+                new RegisteredBankAccount.BankName(bankName),
+                new RegisteredBankAccount.BankAccountNumber(bankAccountNumber),
+                new RegisteredBankAccount.LinkedStatusIsValid(linkedStatusIsValid)
+        );
     }
 }

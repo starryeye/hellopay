@@ -12,7 +12,22 @@ public class RegisteredBankAccountCommandAdapter implements RegisterBankAccountP
     private final RegisteredBankAccountJpaRepository registeredBankAccountJpaRepository;
 
     @Override
-    public RegisteredBankAccount register() {
-        return null;
+    public RegisteredBankAccount register(
+            RegisteredBankAccount.MemberId memberId,
+            RegisteredBankAccount.BankName bankName,
+            RegisteredBankAccount.BankAccountNumber bankAccountNumber,
+            RegisteredBankAccount.LinkedStatusIsValid linkedStatusIsValid
+    ) {
+
+        RegisteredBankAccountJpaEntity entity = RegisteredBankAccountJpaEntity.create(
+                Long.parseLong(memberId.getMemberIdValue()),
+                bankName.getBankNameValue(),
+                bankAccountNumber.getBankAccountNumberValue(),
+                linkedStatusIsValid.getLinkedStatusIsValidValue()
+        );
+
+        registeredBankAccountJpaRepository.save(entity);
+
+        return entity.toDomain();
     }
 }
