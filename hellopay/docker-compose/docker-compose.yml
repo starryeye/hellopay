@@ -37,6 +37,18 @@ services:
 #      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL5InnoDBDialect
 #      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
+
+  banking-service:
+    image: hellopay-banking-service:0.0.1
+    networks:
+      - hellopay-network
+    ports:
+      - "8082:8080"
+    depends_on:
+      - hellopay-mysql
+    environment:
+      - SPRING_PROFILES_ACTIVE=stage-mysql
+
 networks:
   hellopay-network:
     driver: bridge
