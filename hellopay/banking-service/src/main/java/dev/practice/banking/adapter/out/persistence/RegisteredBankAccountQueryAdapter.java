@@ -14,7 +14,7 @@ public class RegisteredBankAccountQueryAdapter implements FindRegisteredBankAcco
 
     private final RegisteredBankAccountJpaRepository registeredBankAccountJpaRepository;
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true) // todo, service 에 걸어야할까?
     @Override
     public List<RegisteredBankAccount> get(RegisteredBankAccount.MemberId memberId) {
 

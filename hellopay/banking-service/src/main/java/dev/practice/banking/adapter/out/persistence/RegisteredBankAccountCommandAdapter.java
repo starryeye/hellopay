@@ -12,7 +12,7 @@ public class RegisteredBankAccountCommandAdapter implements RegisterBankAccountP
 
     private final RegisteredBankAccountJpaRepository registeredBankAccountJpaRepository;
 
-    @Transactional
+    @Transactional // todo, service 에 걸어야할까?
     @Override
     public RegisteredBankAccount register(
             RegisteredBankAccount.MemberId memberId,
