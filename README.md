@@ -4,6 +4,9 @@
 # project
 - hellopay
   - member-service
+  - banking-service
+  - common
+  - docker-compose
 
 ## dependency
 - Java 17
