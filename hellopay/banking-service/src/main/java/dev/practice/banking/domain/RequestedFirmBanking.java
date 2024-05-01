@@ -11,6 +11,8 @@ import lombok.Value;
 public class RequestedFirmBanking {
 
     private final Long requestedFirmBankingId;
+
+    private final String requestedMemberId;
     private final String fromBankName;
     private final Long fromBankAccountNumber;
     private final String toBankName;
@@ -24,6 +26,7 @@ public class RequestedFirmBanking {
 
     public static RequestedFirmBanking create(
             RequestedFirmBankingId requestedFirmBankingId,
+            RequestedMemberId requestedMemberId,
             FromBankName fromBankName,
             FromBankAccountNumber fromBankAccountNumber,
             ToBankName toBankName,
@@ -34,6 +37,7 @@ public class RequestedFirmBanking {
     ) {
         return new RequestedFirmBanking(
                 requestedFirmBankingId.getRequestedFirmBankingIdValue(),
+                requestedMemberId.getRequestedMemberIdValue(),
                 fromBankName.getFromBankNameValue(),
                 fromBankAccountNumber.getFromBankAccountNumberValue(),
                 toBankName.getToBankNameValue(),
@@ -50,6 +54,15 @@ public class RequestedFirmBanking {
 
         public RequestedFirmBankingId(Long value) {
             this.requestedFirmBankingIdValue = value;
+        }
+    }
+
+    @Value
+    public static class RequestedMemberId {
+        String requestedMemberIdValue;
+
+        public RequestedMemberId(String value) {
+            this.requestedMemberIdValue = value;
         }
     }
 

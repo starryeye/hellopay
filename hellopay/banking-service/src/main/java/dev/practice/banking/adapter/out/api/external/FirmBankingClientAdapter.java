@@ -18,7 +18,11 @@ public class FirmBankingClientAdapter implements RequestExternalFirmBankingPort 
     ) {
 
         log.info("[FirmBanking request] money = {}, fromBank = {}, fromAccount = {}, toBank = {}, toAccount = {}",
-                amount, fromBankName, fromBankAccountNumber, toBankName, toBankAccountNumber
+                amount.getAmountValue(),
+                fromBankName.getFromBankNameValue(),
+                fromBankAccountNumber.getFromBankAccountNumberValue(),
+                toBankName.getToBankNameValue(),
+                toBankAccountNumber.getToBankAccountNumberValue()
         );
 
         return Boolean.TRUE;

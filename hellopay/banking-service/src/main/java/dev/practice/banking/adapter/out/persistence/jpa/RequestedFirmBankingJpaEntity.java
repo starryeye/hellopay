@@ -17,6 +17,7 @@ public class RequestedFirmBankingJpaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Long requestedMemberId;
     private String fromBankName;
     private Long fromBankAccountNumber;
     private String toBankName;
@@ -28,8 +29,9 @@ public class RequestedFirmBankingJpaEntity {
     private String transactionId;
 
     @Builder
-    private RequestedFirmBankingJpaEntity(Long id, String fromBankName, Long fromBankAccountNumber, String toBankName, Long toBankAccountNumber, Integer amount, RequestedFirmBankingType status, String transactionId) {
+    private RequestedFirmBankingJpaEntity(Long id, Long requestedMemberId, String fromBankName, Long fromBankAccountNumber, String toBankName, Long toBankAccountNumber, Integer amount, RequestedFirmBankingType status, String transactionId) {
         this.id = id;
+        this.requestedMemberId = requestedMemberId;
         this.fromBankName = fromBankName;
         this.fromBankAccountNumber = fromBankAccountNumber;
         this.toBankName = toBankName;
@@ -39,9 +41,10 @@ public class RequestedFirmBankingJpaEntity {
         this.transactionId = transactionId;
     }
 
-    public static RequestedFirmBankingJpaEntity create(String fromBankName, Long fromBankAccountNumber, String toBankName, Long toBankAccountNumber, Integer amount, RequestedFirmBankingType status, String transactionId) {
+    public static RequestedFirmBankingJpaEntity create(Long requestedMemberId, String fromBankName, Long fromBankAccountNumber, String toBankName, Long toBankAccountNumber, Integer amount, RequestedFirmBankingType status, String transactionId) {
         return RequestedFirmBankingJpaEntity.builder()
                 .id(null)
+                .requestedMemberId(requestedMemberId)
                 .fromBankName(fromBankName)
                 .fromBankAccountNumber(fromBankAccountNumber)
                 .toBankName(toBankName)
@@ -55,6 +58,7 @@ public class RequestedFirmBankingJpaEntity {
     public RequestedFirmBanking toDomain() {
         return RequestedFirmBanking.create(
                 new RequestedFirmBanking.RequestedFirmBankingId(id),
+                new RequestedFirmBanking.RequestedMemberId(String.valueOf(requestedMemberId)),
                 new RequestedFirmBanking.FromBankName(fromBankName),
                 new RequestedFirmBanking.FromBankAccountNumber(fromBankAccountNumber),
                 new RequestedFirmBanking.ToBankName(toBankName),

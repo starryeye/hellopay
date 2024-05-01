@@ -6,6 +6,7 @@ import lombok.Getter;
 @Getter
 public class RequestFirmBankingSource {
 
+    private final String requestedMemberId;
     private final String fromBankName;
     private final Long fromBankAccountNumber;
     private final String toBankName;
@@ -13,7 +14,8 @@ public class RequestFirmBankingSource {
     private final Integer amount;
 
     @Builder
-    private RequestFirmBankingSource(String fromBankName, Long fromBankAccountNumber, String toBankName, Long toBankAccountNumber, Integer amount) {
+    private RequestFirmBankingSource(String requestedMemberId, String fromBankName, Long fromBankAccountNumber, String toBankName, Long toBankAccountNumber, Integer amount) {
+        this.requestedMemberId = requestedMemberId;
         this.fromBankName = fromBankName;
         this.fromBankAccountNumber = fromBankAccountNumber;
         this.toBankName = toBankName;

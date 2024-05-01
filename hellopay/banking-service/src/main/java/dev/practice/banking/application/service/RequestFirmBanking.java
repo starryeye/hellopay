@@ -31,6 +31,7 @@ public class RequestFirmBanking implements RequestFirmBankingUseCase {
 
         // 1. 요청 상태의 RequestedFirmBanking 을 DB 에 저장
         RequestedFirmBanking registered = registerRequestedFirmBankingPort.register(
+                new RequestedFirmBanking.RequestedMemberId(source.getRequestedMemberId()),
                 new RequestedFirmBanking.FromBankName(source.getFromBankName()),
                 new RequestedFirmBanking.FromBankAccountNumber(source.getFromBankAccountNumber()),
                 new RequestedFirmBanking.ToBankName(source.getToBankName()),

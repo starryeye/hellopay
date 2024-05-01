@@ -6,12 +6,10 @@ import dev.practice.banking.application.port.in.RequestFirmBankingUseCase;
 import dev.practice.banking.application.port.in.source.RequestFirmBankingSource;
 import dev.practice.banking.domain.RequestedFirmBanking;
 import dev.practice.common.WebAdapter;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @WebAdapter
 @RestController
@@ -29,9 +27,13 @@ public class RequestFirmBankingController {
 
 
     @PostMapping("/request")
-    public ResponseEntity<RequestFirmBankingResponse> requestFirmBanking(@RequestBody RequestFirmBankingRequest request) {
+    public ResponseEntity<RequestFirmBankingResponse> requestFirmBanking(
+            @Valid @RequestBody RequestFirmBankingRequest request,
+            @RequestHeader("X-MEMBER-ID") String memberId
+    ) {
 
         RequestFirmBankingSource source = RequestFirmBankingSource.builder()
+                .requestedMemberId(memberId)
                 .fromBankName(request.getFromBankName())
                 .fromBankAccountNumber(request.getFromBankAccountNumber())
                 .toBankName(request.getToBankName())

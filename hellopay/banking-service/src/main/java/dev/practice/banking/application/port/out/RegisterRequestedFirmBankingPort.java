@@ -5,6 +5,7 @@ import dev.practice.banking.domain.RequestedFirmBanking;
 public interface RegisterRequestedFirmBankingPort {
 
     RequestedFirmBanking register(
+            RequestedFirmBanking.RequestedMemberId requestedMemberId,
             RequestedFirmBanking.FromBankName fromBankName,
             RequestedFirmBanking.FromBankAccountNumber fromBankAccountNumber,
             RequestedFirmBanking.ToBankName toBankName,

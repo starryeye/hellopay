@@ -16,6 +16,7 @@ public class RequestedFirmBankingCommandAdapter implements RegisterRequestedFirm
 
     @Override
     public RequestedFirmBanking register(
+            RequestedFirmBanking.RequestedMemberId requestedMemberId,
             RequestedFirmBanking.FromBankName fromBankName,
             RequestedFirmBanking.FromBankAccountNumber fromBankAccountNumber,
             RequestedFirmBanking.ToBankName toBankName,
@@ -26,6 +27,7 @@ public class RequestedFirmBankingCommandAdapter implements RegisterRequestedFirm
     ) {
 
         RequestedFirmBankingJpaEntity entity = RequestedFirmBankingJpaEntity.create(
+                Long.parseLong(requestedMemberId.getRequestedMemberIdValue()),
                 fromBankName.getFromBankNameValue(),
                 fromBankAccountNumber.getFromBankAccountNumberValue(),
                 toBankName.getToBankNameValue(),
@@ -43,7 +45,8 @@ public class RequestedFirmBankingCommandAdapter implements RegisterRequestedFirm
             RequestedFirmBanking.RequestedFirmBankingId requestedFirmBankingId,
             RequestedFirmBanking.RequestStatus requestStatus
     ) {
-        RequestedFirmBankingJpaEntity entity = requestedFirmBankingJpaRepository.findById(requestedFirmBankingId.getRequestedFirmBankingIdValue()).orElseThrow();
+        RequestedFirmBankingJpaEntity entity = requestedFirmBankingJpaRepository.findById(requestedFirmBankingId.getRequestedFirmBankingIdValue())
+                .orElseThrow();
 
         entity.changeStatus(requestStatus.getRequestStatusValue());
 
