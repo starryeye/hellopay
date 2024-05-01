@@ -1,5 +1,7 @@
 package dev.practice.banking.adapter.out.persistence;
 
+import dev.practice.banking.adapter.out.persistence.jpa.RegisteredBankAccountJpaEntity;
+import dev.practice.banking.adapter.out.persistence.jpa.RegisteredBankAccountJpaRepository;
 import dev.practice.banking.application.port.out.RegisterBankAccountPort;
 import dev.practice.banking.domain.RegisteredBankAccount;
 import dev.practice.common.PersistenceAdapter;

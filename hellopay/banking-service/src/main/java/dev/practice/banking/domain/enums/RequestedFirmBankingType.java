@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum FirmBankingRequestType {
+public enum RequestedFirmBankingType {
 
     REQUESTED("요청중"),
     COMPLETED("완료"),

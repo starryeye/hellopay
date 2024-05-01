@@ -5,5 +5,5 @@ import dev.practice.banking.domain.RequestedFirmBanking;
 
 public interface RequestFirmBankingUseCase {
 
-    RequestedFirmBanking requestFirmBanking(RequestFirmBankingSource requestFirmBankingSource);
+    RequestedFirmBanking execute(RequestFirmBankingSource requestFirmBankingSource);
 }

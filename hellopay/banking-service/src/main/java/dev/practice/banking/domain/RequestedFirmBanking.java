@@ -1,12 +1,10 @@
 package dev.practice.banking.domain;
 
-import dev.practice.banking.domain.enums.FirmBankingRequestType;
+import dev.practice.banking.domain.enums.RequestedFirmBankingType;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Value;
-
-import java.util.UUID;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -19,9 +17,9 @@ public class RequestedFirmBanking {
     private final Long toBankAccountNumber;
     private final Integer amount;
 
-    private final FirmBankingRequestType requestStatus;
+    private final RequestedFirmBankingType requestStatus;
 
-    private final UUID transactionId;
+    private final String transactionId;
 
 
     public static RequestedFirmBanking create(
@@ -102,18 +100,18 @@ public class RequestedFirmBanking {
 
     @Value
     public static class RequestStatus {
-        FirmBankingRequestType requestStatusValue;
+        RequestedFirmBankingType requestStatusValue;
 
-        public RequestStatus(FirmBankingRequestType value) {
+        public RequestStatus(RequestedFirmBankingType value) {
             this.requestStatusValue = value;
         }
     }
 
     @Value
     public static class TransactionId {
-        UUID transactionIdValue;
+        String transactionIdValue;
 
-        public TransactionId(UUID value) {
+        public TransactionId(String value) {
             this.transactionIdValue = value;
         }
     }

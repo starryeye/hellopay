@@ -3,6 +3,8 @@ package dev.practice.banking.adapter.in.web;
 import dev.practice.banking.adapter.in.web.request.RequestFirmBankingRequest;
 import dev.practice.banking.adapter.in.web.response.RequestFirmBankingResponse;
 import dev.practice.banking.application.port.in.RequestFirmBankingUseCase;
+import dev.practice.banking.application.port.in.source.RequestFirmBankingSource;
+import dev.practice.banking.domain.RequestedFirmBanking;
 import dev.practice.common.WebAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,5 +31,16 @@ public class RequestFirmBankingController {
     @PostMapping("/request")
     public ResponseEntity<RequestFirmBankingResponse> requestFirmBanking(@RequestBody RequestFirmBankingRequest request) {
 
+        RequestFirmBankingSource source = RequestFirmBankingSource.builder()
+                .fromBankName(request.getFromBankName())
+                .fromBankAccountNumber(request.getFromBankAccountNumber())
+                .toBankName(request.getToBankName())
+                .toBankAccountNumber(request.getToBankAccountNumber())
+                .amount(request.getAmount())
+                .build();
+
+        RequestedFirmBanking executed = requestFirmBankingUseCase.execute(source);
+
+        return ResponseEntity.ok(RequestFirmBankingResponse.of(executed));
     }
 }

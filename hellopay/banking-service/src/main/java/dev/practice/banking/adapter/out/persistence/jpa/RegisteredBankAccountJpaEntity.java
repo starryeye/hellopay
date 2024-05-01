@@ -1,4 +1,4 @@
-package dev.practice.banking.adapter.out.persistence;
+package dev.practice.banking.adapter.out.persistence.jpa;
 
 import dev.practice.banking.domain.RegisteredBankAccount;
 import jakarta.persistence.*;
