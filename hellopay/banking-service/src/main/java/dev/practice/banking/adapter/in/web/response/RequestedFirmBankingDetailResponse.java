@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class RequestFirmBankingResponse {
+public class RequestedFirmBankingDetailResponse {
 
     private final String requestedMemberId;
     private final String fromBankName;
@@ -17,7 +17,7 @@ public class RequestFirmBankingResponse {
     private final String transactionId;
 
     @Builder
-    private RequestFirmBankingResponse(String requestedMemberId, String fromBankName, Long fromBankAccountNumber, String toBankName, Long toBankAccountNumber, Integer amount, String status, String transactionId) {
+    private RequestedFirmBankingDetailResponse(String requestedMemberId, String fromBankName, Long fromBankAccountNumber, String toBankName, Long toBankAccountNumber, Integer amount, String status, String transactionId) {
         this.requestedMemberId = requestedMemberId;
         this.fromBankName = fromBankName;
         this.fromBankAccountNumber = fromBankAccountNumber;
@@ -28,8 +28,8 @@ public class RequestFirmBankingResponse {
         this.transactionId = transactionId;
     }
 
-    public static RequestFirmBankingResponse of(RequestedFirmBanking domain) {
-        return RequestFirmBankingResponse.builder()
+    public static RequestedFirmBankingDetailResponse of(RequestedFirmBanking domain) {
+        return RequestedFirmBankingDetailResponse.builder()
                 .requestedMemberId(domain.getRequestedMemberId())
                 .fromBankName(domain.getFromBankName())
                 .fromBankAccountNumber(domain.getFromBankAccountNumber())

@@ -34,3 +34,20 @@ X-MEMBER-ID: 2
   "toBankAccountNumber": 222222,
   "amount": 1000000
 }
+
+### 펌뱅킹 요청
+POST http://localhost:8080/api/v1/banking/firm-banking/request
+Content-Type: application/json
+X-MEMBER-ID: 2
+
+{
+  "fromBankName": "hello Bank",
+  "fromBankAccountNumber": 111111,
+  "toBankName": "world Bank",
+  "toBankAccountNumber": 222222,
+  "amount": 3000000
+}
+
+### 펌뱅킹 요청 내역 조회
+GET http://localhost:8080/api/v1/banking/firm-banking
+X-MEMBER-ID: 2

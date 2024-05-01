@@ -1,7 +1,7 @@
 package dev.practice.banking.adapter.in.web;
 
 import dev.practice.banking.adapter.in.web.request.RequestFirmBankingRequest;
-import dev.practice.banking.adapter.in.web.response.RequestFirmBankingResponse;
+import dev.practice.banking.adapter.in.web.response.RequestedFirmBankingDetailResponse;
 import dev.practice.banking.application.port.in.RequestFirmBankingUseCase;
 import dev.practice.banking.application.port.in.source.RequestFirmBankingSource;
 import dev.practice.banking.domain.RequestedFirmBanking;
@@ -27,7 +27,7 @@ public class RequestFirmBankingController {
 
 
     @PostMapping("/request")
-    public ResponseEntity<RequestFirmBankingResponse> requestFirmBanking(
+    public ResponseEntity<RequestedFirmBankingDetailResponse> requestFirmBanking(
             @Valid @RequestBody RequestFirmBankingRequest request,
             @RequestHeader("X-MEMBER-ID") String memberId
     ) {
@@ -43,6 +43,6 @@ public class RequestFirmBankingController {
 
         RequestedFirmBanking executed = requestFirmBankingUseCase.execute(source);
 
-        return ResponseEntity.ok(RequestFirmBankingResponse.of(executed));
+        return ResponseEntity.ok(RequestedFirmBankingDetailResponse.of(executed));
     }
 }
