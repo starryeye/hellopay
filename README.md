@@ -17,3 +17,4 @@
   - validation
 - MySQL
 - H2
+- lombok
