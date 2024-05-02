@@ -12,3 +12,6 @@
 - Java 17
 - Spring Boot
 - Spring Data JPA
+- Spring Validation
+- MySQL
+- H2
