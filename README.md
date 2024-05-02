@@ -10,8 +10,10 @@
 
 ## dependency
 - Java 17
-- Spring Boot
-- Spring Data JPA
-- Spring Validation
+- Spring
+  - boot
+  - web
+  - data-jpa
+  - validation
 - MySQL
 - H2
