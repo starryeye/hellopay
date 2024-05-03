@@ -5,11 +5,10 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum MoneyChangingStatus {
+public enum MoneyChangeType {
 
-    REQUESTED("요청중"),
-    COMPLETED("완료"),
-    FAILED("실패");
+    INCREASE("증액"),
+    DECREASE("감액");
 
     private final String text;
 }

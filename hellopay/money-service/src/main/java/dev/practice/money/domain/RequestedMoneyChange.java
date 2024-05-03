@@ -1,7 +1,7 @@
 package dev.practice.money.domain;
 
-import dev.practice.money.domain.enums.MoneyChangingStatus;
-import dev.practice.money.domain.enums.MoneyChangingType;
+import dev.practice.money.domain.enums.MoneyChangeStatus;
+import dev.practice.money.domain.enums.MoneyChangeType;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,25 +11,25 @@ import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class RequestedMoneyChanging {
+public class RequestedMoneyChange {
 
     /**
      * 고객의 선불 충전 금액(머니) 변동(충전, 감액) 요청 정보
      */
 
-    private final String requestedMoneyChangingId;
+    private final String requestedMoneyChangeId;
 
     private final String targetMemberId;
 
     private final Integer amount;
-    private final MoneyChangingType type;
-    private final MoneyChangingStatus status;
+    private final MoneyChangeType type;
+    private final MoneyChangeStatus status;
 
     private final String transactionId;
     private final LocalDateTime createdAt;
 
-    public static RequestedMoneyChanging create(
-            RequestedMoneyChangingId requestedMoneyChangingId,
+    public static RequestedMoneyChange create(
+            RequestedMoneyChangeId requestedMoneyChangeId,
             TargetMemberId targetMemberId,
             Amount amount,
             Type type,
@@ -37,8 +37,8 @@ public class RequestedMoneyChanging {
             TransactionId transactionId,
             CreatedAt createdAt
     ) {
-        return new RequestedMoneyChanging(
-                requestedMoneyChangingId.getRequestedMoneyChangingIdValue(),
+        return new RequestedMoneyChange(
+                requestedMoneyChangeId.getRequestedMoneyChangeIdValue(),
                 targetMemberId.getTargetMemberIdValue(),
                 amount.getAmountValue(),
                 type.getTypeValue(),
@@ -49,11 +49,11 @@ public class RequestedMoneyChanging {
     }
 
     @Value
-    public static class RequestedMoneyChangingId {
-        String requestedMoneyChangingIdValue;
+    public static class RequestedMoneyChangeId {
+        String requestedMoneyChangeIdValue;
 
-        public RequestedMoneyChangingId(String value) {
-            this.requestedMoneyChangingIdValue = value;
+        public RequestedMoneyChangeId(String value) {
+            this.requestedMoneyChangeIdValue = value;
         }
     }
 
@@ -77,16 +77,16 @@ public class RequestedMoneyChanging {
 
     @Value
     public static class Type {
-        MoneyChangingType typeValue;
-        public Type(MoneyChangingType value) {
+        MoneyChangeType typeValue;
+        public Type(MoneyChangeType value) {
             this.typeValue = value;
         }
     }
 
     @Value
     public static class Status {
-        MoneyChangingStatus statusValue;
-        public Status(MoneyChangingStatus value) {
+        MoneyChangeStatus statusValue;
+        public Status(MoneyChangeStatus value) {
             this.statusValue = value;
         }
     }
