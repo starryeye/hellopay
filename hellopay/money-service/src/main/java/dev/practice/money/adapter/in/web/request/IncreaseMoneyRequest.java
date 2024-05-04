@@ -1,6 +1,5 @@
 package dev.practice.money.adapter.in.web.request;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import lombok.Builder;
 import lombok.Getter;
