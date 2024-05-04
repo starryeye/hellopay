@@ -20,7 +20,7 @@ public class RequestMoneyChange implements IncreaseMoneyUseCase {
 
         // 1. 맴버 정보가 정상인지 확인 (member-service)
 
-        // 2. 맴버의 연동된 계좌가 있는지, 맴버의 연동된 계좌의 잔액이 충분한지도 확인(감액 시) (banking-service)
+        // 2. 맴버의 연동된 계좌가 있는지, 맴버의 연동된 실물 계좌의 잔액이 충분한지도 확인 (banking-service)
 
         // 3. 법인 계좌 상태도 정상인지 확인 (banking-service)
 
