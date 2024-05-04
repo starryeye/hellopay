@@ -14,9 +14,9 @@ public class MembersMoney {
      * Member 와 1:1 관계
      */
 
-    private final String membersMoneyId;
+    private final Long membersMoneyId;
 
-    private final String memberId;
+    private final Long memberId;
     private final Integer balance;
 
     public static MembersMoney create(
@@ -33,18 +33,18 @@ public class MembersMoney {
 
     @Value
     public static class MembersMoneyId {
-        String membersMoneyIdValue;
+        Long membersMoneyIdValue;
 
-        public MembersMoneyId(String value) {
+        public MembersMoneyId(Long value) {
             this.membersMoneyIdValue = value;
         }
     }
 
     @Value
     public static class MemberId {
-        String memberIdValue;
+        Long memberIdValue;
 
-        public MemberId(String value) {
+        public MemberId(Long value) {
             this.memberIdValue = value;
         }
     }

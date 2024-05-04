@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 
 @PersistenceAdapter
 @RequiredArgsConstructor
-public class RequestedMoneyChangeAdapter implements RecordRequestedMoneyChangePort {
+public class RequestedMoneyChangeCommandAdapter implements RecordRequestedMoneyChangePort {
 
     private final RequestedMoneyChangeJpaRepository requestedMoneyChangeJpaRepository;
 

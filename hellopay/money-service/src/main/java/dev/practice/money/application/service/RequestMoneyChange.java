@@ -2,7 +2,9 @@ package dev.practice.money.application.service;
 
 import dev.practice.common.UseCase;
 import dev.practice.money.application.port.in.IncreaseMoneyUseCase;
+import dev.practice.money.application.port.out.FindMembersMoneyPort;
 import dev.practice.money.application.port.out.RecordRequestedMoneyChangePort;
+import dev.practice.money.application.port.out.UpdateMembersMoneyBalancePort;
 import dev.practice.money.domain.MembersMoney;
 import dev.practice.money.domain.RequestedMoneyChange;
 import dev.practice.money.domain.enums.MoneyChangeStatus;
@@ -17,6 +19,9 @@ import java.util.UUID;
 public class RequestMoneyChange implements IncreaseMoneyUseCase {
 
     private final RecordRequestedMoneyChangePort recordRequestedMoneyChangePort;
+
+    private final FindMembersMoneyPort findMembersMoneyPort;
+    private final UpdateMembersMoneyBalancePort updateMembersMoneyBalancePort;
 
     @Transactional
     @Override
@@ -42,8 +47,19 @@ public class RequestMoneyChange implements IncreaseMoneyUseCase {
 
         // 6-1. 결과가 정상적이라면. 성공으로 RequestedMoneyChange 상태 값을 업데이트 후에 리턴
         // 성공 시에 멤버의 MembersMoney 도메인 증액
+        increaseMembersMoneyBalance(targetMemberId.getTargetMemberIdValue(), amount.getAmountValue());
 
         // 6-2. 결과가 실패라면, 실패라고 RequestedMoneyChange 상태 값을 업데이트 후에 리턴
 
+    }
+
+    private void increaseMembersMoneyBalance(Long memberIdValue, Integer amountValue) {
+        MembersMoney.MemberId memberId = new MembersMoney.MemberId(memberIdValue);
+        MembersMoney money = findMembersMoneyPort.get(memberId);
+
+        MembersMoney.MembersMoneyId membersMoneyId = new MembersMoney.MembersMoneyId(money.getMembersMoneyId());
+        Integer increasedBalance  = money.getBalance() + amountValue;
+        MembersMoney.Balance updatedBalance = new MembersMoney.Balance(increasedBalance);
+        updateMembersMoneyBalancePort.updateBalance(membersMoneyId, updatedBalance);
     }
 }

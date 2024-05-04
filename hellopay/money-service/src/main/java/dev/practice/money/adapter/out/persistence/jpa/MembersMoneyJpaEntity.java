@@ -1,5 +1,6 @@
 package dev.practice.money.adapter.out.persistence.jpa;
 
+import dev.practice.money.domain.MembersMoney;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -17,21 +18,33 @@ public class MembersMoneyJpaEntity extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String memberId;
+    private Long memberId;
     private Integer balance;
 
     @Builder
-    private MembersMoneyJpaEntity(Long id, String memberId, Integer balance) {
+    private MembersMoneyJpaEntity(Long id, Long memberId, Integer balance) {
         this.id = id;
         this.memberId = memberId;
         this.balance = balance;
     }
 
-    public static MembersMoneyJpaEntity create(String memberId, Integer balance) {
+    public static MembersMoneyJpaEntity create(Long memberId, Integer balance) {
         return MembersMoneyJpaEntity.builder()
                 .id(null)
                 .memberId(memberId)
                 .balance(balance)
                 .build();
+    }
+
+    public MembersMoney toDomain() {
+        return MembersMoney.create(
+                new MembersMoney.MembersMoneyId(id),
+                new MembersMoney.MemberId(memberId),
+                new MembersMoney.Balance(balance)
+        );
+    }
+
+    public void changeBalance(Integer newBalance) {
+        this.balance = newBalance;
     }
 }
