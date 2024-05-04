@@ -1,5 +1,6 @@
 package dev.practice.money.adapter.out.persistence.jpa;
 
+import dev.practice.money.domain.RequestedMoneyChange;
 import dev.practice.money.domain.enums.MoneyChangeStatus;
 import dev.practice.money.domain.enums.MoneyChangeType;
 import jakarta.persistence.*;
@@ -50,5 +51,17 @@ public class RequestedMoneyChangeJpaEntity extends BaseEntity{
                 .status(status)
                 .transactionId(transactionId)
                 .build();
+    }
+
+    public RequestedMoneyChange toDomain() {
+        return RequestedMoneyChange.create(
+                new RequestedMoneyChange.RequestedMoneyChangeId(id),
+                new RequestedMoneyChange.TargetMemberId(targetMemberId),
+                new RequestedMoneyChange.Amount(amount),
+                new RequestedMoneyChange.Type(type),
+                new RequestedMoneyChange.Status(status),
+                new RequestedMoneyChange.TransactionId(transactionId),
+                new RequestedMoneyChange.CreatedAt(getCreatedAt())
+        );
     }
 }

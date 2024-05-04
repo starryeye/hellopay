@@ -17,9 +17,9 @@ public class RequestedMoneyChange {
      * 고객의 선불 충전 금액(머니) 변동(충전, 감액) 요청 정보
      */
 
-    private final String requestedMoneyChangeId;
+    private final Long requestedMoneyChangeId;
 
-    private final String targetMemberId;
+    private final Long targetMemberId;
 
     private final Integer amount;
     private final MoneyChangeType type;
@@ -50,18 +50,18 @@ public class RequestedMoneyChange {
 
     @Value
     public static class RequestedMoneyChangeId {
-        String requestedMoneyChangeIdValue;
+        Long requestedMoneyChangeIdValue;
 
-        public RequestedMoneyChangeId(String value) {
+        public RequestedMoneyChangeId(Long value) {
             this.requestedMoneyChangeIdValue = value;
         }
     }
 
     @Value
     public static class TargetMemberId {
-        String targetMemberIdValue;
+        Long targetMemberIdValue;
 
-        public TargetMemberId(String value) {
+        public TargetMemberId(Long value) {
             this.targetMemberIdValue = value;
         }
     }
