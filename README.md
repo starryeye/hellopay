@@ -5,6 +5,7 @@
 - hellopay
   - member-service
   - banking-service
+  - money-service
   - common
   - docker-compose
 
