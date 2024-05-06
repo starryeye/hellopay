@@ -4,7 +4,7 @@ import dev.practice.money.domain.RequestedMoneyChange;
 
 public interface IncreaseMoneyUseCase {
 
-    void increaseMoney(
+    RequestedMoneyChange increaseMoney(
             RequestedMoneyChange.TargetMemberId memberId,
             RequestedMoneyChange.Amount amount
     );

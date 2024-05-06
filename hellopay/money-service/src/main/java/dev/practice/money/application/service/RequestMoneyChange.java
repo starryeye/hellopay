@@ -25,7 +25,7 @@ public class RequestMoneyChange implements IncreaseMoneyUseCase {
 
     @Transactional
     @Override
-    public void increaseMoney(
+    public RequestedMoneyChange increaseMoney(
             RequestedMoneyChange.TargetMemberId targetMemberId,
             RequestedMoneyChange.Amount amount
     ) {
@@ -51,6 +51,7 @@ public class RequestMoneyChange implements IncreaseMoneyUseCase {
 
         // 6-2. 결과가 실패라면, 실패라고 RequestedMoneyChange 상태 값을 업데이트 후에 리턴
 
+        return requestedMoneyChange;
     }
 
     private void increaseMembersMoneyBalance(Long memberIdValue, Integer amountValue) {
