@@ -4,8 +4,11 @@
 # project
 - hellopay
   - member-service
+    - 회원 관리
   - banking-service
+    - 펌 뱅킹 
   - money-service
+    - 페이 머니
   - common
   - docker-compose
 
